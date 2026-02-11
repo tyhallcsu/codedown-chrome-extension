@@ -1,0 +1,86 @@
+{
+  "manifest_version": 3,
+  "name": "CodeDown",
+  "version": "1.5.0",
+  "description": "Add download buttons to code blocks across ChatGPT, Z.Ai, Gemini, LMArena, Kimi, Le Chat, Meta AI, Copilot, Grok, and LongCat. Save snippets as ready-to-use files and organize multiple downloads with an advanced management menu.",
+  "author": "sharmanhall",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://copilot.microsoft.com/*",
+    "https://gemini.google.com/*",
+    "https://chat.mistral.ai/*",
+    "https://longcat.chat/*",
+    "https://www.kimi.com/*",
+    "https://www.meta.ai/*",
+    "https://chatgpt.com/*",
+    "https://lmarena.ai/*",
+    "https://chat.z.ai/*",
+    "https://grok.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "CodeDown Manager"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://copilot.microsoft.com/*",
+        "https://gemini.google.com/*",
+        "https://chat.mistral.ai/*",
+        "https://longcat.chat/*",
+        "https://www.kimi.com/*",
+        "https://www.meta.ai/*",
+        "https://chatgpt.com/*",
+        "https://lmarena.ai/*",
+        "https://chat.z.ai/*",
+        "https://grok.com/*"
+      ],
+      "js": ["lib/jszip.min.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "open-manager": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "Alt+Shift+S"
+      },
+      "description": "Open CodeDown Manager"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*"],
+      "matches": [
+        "https://copilot.microsoft.com/*",
+        "https://gemini.google.com/*",
+        "https://chat.mistral.ai/*",
+        "https://longcat.chat/*",
+        "https://www.kimi.com/*",
+        "https://www.meta.ai/*",
+        "https://chatgpt.com/*",
+        "https://lmarena.ai/*",
+        "https://chat.z.ai/*",
+        "https://grok.com/*"
+      ]
+    }
+  ]
+}
